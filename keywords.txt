@@ -1,0 +1,2 @@
+natural_compare	KEYWORD2
+natural_less	KEYWORD2

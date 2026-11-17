@@ -99,21 +99,12 @@ int natural_compare(T str1_begin, T str1_end, T str2_begin, T str2_end, bool low
             assert(!res2.was_num);
         }
 
-        bool doContinue = false;
-        if (!res1.has_next) // one string is exhausted...
-        {
-            if (res2.has_next) str2_begin--; // put next_char back
-            doContinue = true;
-        }
-
-        if (!res2.has_next) // the other string is exhausted...
+        if (!res1.has_next || !res2.has_next) // one string or the other is exhausted...
         {
             if (res1.has_next) str1_begin--; // put next_char back
-            doContinue = true;
+            if (res2.has_next) str2_begin--; // put next_char back
+            continue;
         }
-        
-        if (doContinue) // ...don't compare next_char!
-            continue;                         
 
         if(res1.next_char < res2.next_char) {
             return -1;
